@@ -164,3 +164,7 @@ Request method: `DELETE`</br>
 Response status code:
 
 - `200`
+
+
+## Test data
+You can find test data in [test-data](/test-data) folder

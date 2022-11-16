@@ -1,0 +1,68 @@
+curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "SELL",
+ "price": 9.0,
+ "quantity": 100
+ }'
+
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "SELL",
+ "price": 10.00,
+ "quantity": 50
+ }'
+
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "SELL",
+ "price": 11.00,
+ "quantity": 1000
+ }'
+
+  curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "SELL",
+ "price": 15.00,
+ "quantity": 250
+ }'
+
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "BUY",
+ "price": 7.00,
+ "quantity": 250
+ }'
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "BUY",
+ "price": 6.00,
+ "quantity": 800
+ }'
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "BUY",
+ "price": 5.00,
+ "quantity": 150
+ }'
+ curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "currencyPair": "BTCUSD",
+ "type": "BUY",
+ "price": 1.00,
+ "quantity": 5000
+ }'
