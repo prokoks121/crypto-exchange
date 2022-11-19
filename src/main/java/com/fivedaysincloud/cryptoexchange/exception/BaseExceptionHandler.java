@@ -1,16 +1,4 @@
-package com.office.exchange.exception;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-
-import javax.servlet.http.HttpServletResponse;
+package com.fivedaysincloud.cryptoexchange.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +8,14 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.springframework.http.HttpStatus.*;
 
 public abstract class BaseExceptionHandler {
 	private static final ExceptionMapping DEFAULT_ERROR = new ExceptionMapping(INTERNAL_SERVER_ERROR);

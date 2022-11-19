@@ -38,8 +38,9 @@ public class OrderController {
     public void clearAllRecords() {
         try {
             orderService.deleteAllOrders();
-            tradeService.deleteAllTrades();
             userRepository.deleteAll();
+            tradeService.deleteAllTrades();
+
         }catch (Exception e){}
     }
 

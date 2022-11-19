@@ -7,6 +7,8 @@ import com.fivedaysincloud.cryptoexchange.model.OrderType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,11 +23,13 @@ import java.util.List;
 @Entity
 public class Order {
     @OneToMany(targetEntity = Trade.class, mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     List<Trade> trades = new ArrayList<Trade>();
     @Id
     private int id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "users_id", nullable = false)
     private User userId;
     private LocalDateTime createdDateTime;

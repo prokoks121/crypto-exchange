@@ -1,13 +1,12 @@
-package com.office.exchange.exception;
-
-import java.nio.file.AccessDeniedException;
-import java.security.InvalidParameterException;
-import java.util.NoSuchElementException;
-
-import javax.persistence.EntityNotFoundException;
+package com.fivedaysincloud.cryptoexchange.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import javax.persistence.EntityNotFoundException;
+import java.nio.file.AccessDeniedException;
+import java.security.InvalidParameterException;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 class CustomExceptionHandler extends BaseExceptionHandler {

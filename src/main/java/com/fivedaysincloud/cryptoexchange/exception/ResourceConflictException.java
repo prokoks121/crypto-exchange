@@ -1,4 +1,4 @@
-package com.office.exchange.exception;
+package com.fivedaysincloud.cryptoexchange.exception;
 
 public class ResourceConflictException extends RuntimeException {
 	

@@ -1,4 +1,4 @@
-package com.office.exchange.exception;
+package com.fivedaysincloud.cryptoexchange.exception;
 
 public class ReservedServiceException extends RuntimeException {
     private static final long serialVersionUID = 1L;
