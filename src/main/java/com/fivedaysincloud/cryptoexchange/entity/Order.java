@@ -22,7 +22,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Order {
-    @OneToMany(targetEntity = Trade.class, mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     List<Trade> trades = new ArrayList<Trade>();
