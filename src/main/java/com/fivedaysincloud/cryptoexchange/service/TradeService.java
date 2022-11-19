@@ -28,14 +28,10 @@ public class TradeService {
         }
         trade.setPrice(order.getPrice());
         trade.setQuantity(tradeQuantity);
-        tradeRepository.save(trade);
+        Trade newTrade = tradeRepository.save(trade);
+
+        order.getTrades().add(newTrade);
+        newOrder.getTrades().add(newTrade);
     }
 
-    public void setTrades(ResponseOrder responseOrder) {
-        if (responseOrder.getType() == OrderType.BUY) {
-            responseOrder.setTrades(tradeRepository.findAllByBuyOrderId(responseOrder.getId()));
-        } else {
-            responseOrder.setTrades(tradeRepository.findAllBySellOrderId(responseOrder.getId()));
-        }
-    }
 }

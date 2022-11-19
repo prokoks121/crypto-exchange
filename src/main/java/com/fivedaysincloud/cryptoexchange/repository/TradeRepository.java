@@ -6,7 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
 
 public interface TradeRepository extends JpaRepository<Trade, Integer> {
-    Set<Trade> findAllByBuyOrderId(int id);
-
-    Set<Trade> findAllBySellOrderId(int id);
 }

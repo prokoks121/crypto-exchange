@@ -1,7 +1,7 @@
 package com.fivedaysincloud.cryptoexchange.rest;
 
+import com.fivedaysincloud.cryptoexchange.dto.OrderBook;
 import com.fivedaysincloud.cryptoexchange.model.CurrencyPair;
-import com.fivedaysincloud.cryptoexchange.model.OrderBook;
 import com.fivedaysincloud.cryptoexchange.service.OrderBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,19 +1,16 @@
-package com.fivedaysincloud.cryptoexchange.entity;
+package com.fivedaysincloud.cryptoexchange.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Trade {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+@Data
+public class TradeDto {
+
     private int id;
     private int buyOrderId;
     private int sellOrderId;
@@ -28,5 +25,4 @@ public class Trade {
     public void setQuantity(Double value) {
         this.quantity = (double) Math.round(value * 100) / 100;
     }
-
 }

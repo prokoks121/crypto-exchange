@@ -1,9 +1,11 @@
 package com.fivedaysincloud.cryptoexchange.service;
 
 import com.fivedaysincloud.cryptoexchange.entity.Order;
+import com.fivedaysincloud.cryptoexchange.entity.User;
 import com.fivedaysincloud.cryptoexchange.model.OrderStatus;
 import com.fivedaysincloud.cryptoexchange.model.OrderType;
 import com.fivedaysincloud.cryptoexchange.repository.OrderRepository;
+import com.fivedaysincloud.cryptoexchange.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class OrderService {
 
     @Autowired
     private TradeService tradeService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public void deleteAllOrders() {
         orderRepository.deleteAll();
@@ -53,6 +58,8 @@ public class OrderService {
                     order.setOrderStatus(OrderStatus.CLOSE);
                 }
 
+                tradeService.createTrade(order, newOrder, requiredQuantity);
+
                 order.setFilledQuantity(order.getFilledQuantity() + requiredQuantity);
                 orderRepository.save(order);
 
@@ -60,9 +67,10 @@ public class OrderService {
                 newOrder.setFilledQuantity(newOrder.getQuantity());
                 orderRepository.save(newOrder);
 
-                tradeService.createTrade(order, newOrder, requiredQuantity);
                 return;
             } else {
+                tradeService.createTrade(order, newOrder, requiredQuantity);
+
                 order.setOrderStatus(OrderStatus.CLOSE);
                 order.setFilledQuantity(order.getQuantity());
                 orderRepository.save(order);
@@ -70,7 +78,6 @@ public class OrderService {
                 newOrder.setFilledQuantity(newOrder.getFilledQuantity() + availableQuantity);
                 orderRepository.save(newOrder);
 
-                tradeService.createTrade(order, newOrder, availableQuantity);
             }
         }
     }

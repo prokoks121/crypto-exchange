@@ -1,4 +1,4 @@
-package com.fivedaysincloud.cryptoexchange.model;
+package com.fivedaysincloud.cryptoexchange.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseOrderType {
+public class OrderBookItem {
     private Double quantity;
     private Double price;
 

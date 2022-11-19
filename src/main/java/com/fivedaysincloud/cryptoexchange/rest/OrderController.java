@@ -1,8 +1,8 @@
 package com.fivedaysincloud.cryptoexchange.rest;
 
+import com.fivedaysincloud.cryptoexchange.dto.OrderDto;
 import com.fivedaysincloud.cryptoexchange.entity.Order;
 import com.fivedaysincloud.cryptoexchange.mapper.OrderMapper;
-import com.fivedaysincloud.cryptoexchange.model.response.ResponseOrder;
 import com.fivedaysincloud.cryptoexchange.repository.UserRepository;
 import com.fivedaysincloud.cryptoexchange.service.OrderService;
 import com.fivedaysincloud.cryptoexchange.service.TradeService;
@@ -24,13 +24,13 @@ public class OrderController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/order")
-    public ResponseEntity<ResponseOrder> createOrder(@RequestBody Order order) {
-        Order newOrder = orderService.addOrder(order);
+    @Autowired
+    private OrderMapper orderMapper;
 
-        ResponseOrder responseOrder = OrderMapper.mapToResponseOrder(newOrder);
-        tradeService.setTrades(responseOrder);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseOrder);
+    @PostMapping("/order")
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
+        Order order = orderService.addOrder(orderMapper.mapToOrder(orderDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderMapper.mapToDto(order));
     }
 
     @DeleteMapping("/order/all")
@@ -42,11 +42,9 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
-    public ResponseEntity<ResponseOrder> getOrder(@PathVariable("id") int id) {
+    public ResponseEntity<OrderDto> getOrder(@PathVariable("id") int id) {
         Order order = orderService.getOrder(id);
-        ResponseOrder responseOrder = OrderMapper.mapToResponseOrder(order);
-        tradeService.setTrades(responseOrder);
-        return ResponseEntity.ok(responseOrder);
+        return ResponseEntity.ok(orderMapper.mapToDto(order));
     }
 
 }

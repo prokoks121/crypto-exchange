@@ -16,6 +16,8 @@ public class RequestOrder {
     private Double price;
     private Double quantity;
 
+    private int userId;
+
     public void setPrice(Double value) {
         this.price = (double) Math.round(value * 100) / 100;
     }
