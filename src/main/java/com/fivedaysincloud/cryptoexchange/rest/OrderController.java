@@ -3,6 +3,7 @@ package com.fivedaysincloud.cryptoexchange.rest;
 import com.fivedaysincloud.cryptoexchange.entity.Order;
 import com.fivedaysincloud.cryptoexchange.mapper.OrderMapper;
 import com.fivedaysincloud.cryptoexchange.model.response.ResponseOrder;
+import com.fivedaysincloud.cryptoexchange.repository.UserRepository;
 import com.fivedaysincloud.cryptoexchange.service.OrderService;
 import com.fivedaysincloud.cryptoexchange.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class OrderController {
     @Autowired
     private TradeService tradeService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @PostMapping("/order")
     public ResponseEntity<ResponseOrder> createOrder(@RequestBody Order order) {
         Order newOrder = orderService.addOrder(order);
@@ -34,6 +38,7 @@ public class OrderController {
     public void clearAllRecords() {
         orderService.deleteAllOrders();
         tradeService.deleteAllTrades();
+        userRepository.deleteAll();
     }
 
     @GetMapping("/order/{id}")

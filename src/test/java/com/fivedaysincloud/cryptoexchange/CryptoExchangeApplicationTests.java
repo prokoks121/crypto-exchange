@@ -2,6 +2,7 @@ package com.fivedaysincloud.cryptoexchange;
 
 import com.fivedaysincloud.cryptoexchange.entity.Order;
 import com.fivedaysincloud.cryptoexchange.entity.Trade;
+import com.fivedaysincloud.cryptoexchange.entity.User;
 import com.fivedaysincloud.cryptoexchange.model.*;
 import com.fivedaysincloud.cryptoexchange.model.response.ResponseOrder;
 import com.fivedaysincloud.cryptoexchange.rest.OrderController;
@@ -33,6 +34,8 @@ class CryptoExchangeApplicationTests {
     private OrderController orderController;
     private OrderBook expected = new OrderBook();
 
+    private final User user = new User(1, "email", "first name", "last name");
+
     @BeforeEach
     void init() {
         expected = new OrderBook();
@@ -41,10 +44,10 @@ class CryptoExchangeApplicationTests {
         expected.getBuyOrders().add(new ResponseOrderType(250.00, 7.00));
         expected.getBuyOrders().add(new ResponseOrderType(800.00, 6.00));
 
-        response1 = orderController.createOrder(new Order(1, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.SELL, 0.0, OrderStatus.OPEN, 9.0, 100.00)).getBody();
-        response2 = orderController.createOrder(new Order(2, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.SELL, 0.0, OrderStatus.OPEN, 10.0, 50.00)).getBody();
-        response3 = orderController.createOrder(new Order(3, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 7.0, 250.00)).getBody();
-        response4 = orderController.createOrder(new Order(4, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 6.0, 800.00)).getBody();
+        response1 = orderController.createOrder(new Order(1, user, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.SELL, 0.0, OrderStatus.OPEN, 9.0, 100.00)).getBody();
+        response2 = orderController.createOrder(new Order(2, user, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.SELL, 0.0, OrderStatus.OPEN, 10.0, 50.00)).getBody();
+        response3 = orderController.createOrder(new Order(3, user, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 7.0, 250.00)).getBody();
+        response4 = orderController.createOrder(new Order(4, user, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 6.0, 800.00)).getBody();
         trad1 = new Trade(6, 5, 1, null, 9.0, 50.0);
     }
 
@@ -70,7 +73,7 @@ class CryptoExchangeApplicationTests {
         ResponseOrder responseOrder = restTemplate.exchange(
                 "http://localhost:" + port + "/order",
                 HttpMethod.POST,
-                new HttpEntity<>(new Order(5, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 9.0, 50.00)),
+                new HttpEntity<>(new Order(5, user, LocalDateTime.now(), CurrencyPair.BTCUSD, OrderType.BUY, 0.0, OrderStatus.OPEN, 9.0, 50.00)),
                 ResponseOrder.class
         ).getBody();
         trad1.setTimestamp(responseOrder.getTrades().stream().toList().get(0).getTimestamp());

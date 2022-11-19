@@ -23,6 +23,9 @@ public class Order {
     @JsonIgnore
     private int id;
     @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User userId;
     private LocalDateTime createdDateTime = LocalDateTime.now();
     private CurrencyPair currencyPair;
     private OrderType type;
@@ -34,6 +37,7 @@ public class Order {
     private Double price;
     @Min(value = 0)
     private Double quantity;
+
 
     public void setPrice(Double value) {
         this.price = (double) Math.round(value * 100) / 100;
