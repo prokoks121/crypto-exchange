@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Entity
 public class Trade {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int buyOrderId;
     private int sellOrderId;

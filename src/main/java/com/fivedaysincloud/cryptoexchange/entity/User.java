@@ -14,8 +14,6 @@ import javax.persistence.*;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @JsonIgnore
     private int id;
 
     private String email;
