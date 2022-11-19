@@ -24,10 +24,9 @@ public class Order {
     @JsonIgnore
     List<Trade> trades = new ArrayList<Trade>();
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id", nullable = false)
     private User userId;
     private LocalDateTime createdDateTime;

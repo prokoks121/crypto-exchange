@@ -1,5 +1,10 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-COPY /target/*.jar app.jar
+FROM maven:3.8.5-openjdk-17-slim AS tennisBackendBuild
+WORKDIR /root/src/backend
+COPY . .
+RUN mvn package  -DskipTests
 
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk:17 AS tennisBackendRuntime
+WORKDIR /app
+COPY --from=tennisBackendBuild /root/src/backend/target/intern-exe.jar ./
+EXPOSE 8080
+CMD java -jar intern-exe.jar

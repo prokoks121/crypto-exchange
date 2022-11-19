@@ -36,9 +36,11 @@ public class OrderController {
     @DeleteMapping("/order/all")
     @ResponseStatus(code = HttpStatus.OK)
     public void clearAllRecords() {
-        orderService.deleteAllOrders();
-        tradeService.deleteAllTrades();
-        userRepository.deleteAll();
+        try {
+            orderService.deleteAllOrders();
+            tradeService.deleteAllTrades();
+            userRepository.deleteAll();
+        }catch (Exception e){}
     }
 
     @GetMapping("/order/{id}")
