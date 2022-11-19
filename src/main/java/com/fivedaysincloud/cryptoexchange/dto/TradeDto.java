@@ -14,7 +14,7 @@ public class TradeDto {
     private int id;
     private int buyOrderId;
     private int sellOrderId;
-    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    private Timestamp createdDateTime = new Timestamp(System.currentTimeMillis());
     private Double price;
     private Double quantity;
 
