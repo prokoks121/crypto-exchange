@@ -16,8 +16,8 @@ public class OrderBookService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public OrderBook createOrderBook() {
-        Collection<Order> orders = orderRepository.findAllByOrderStatusAndCurrencyPair(OrderStatus.OPEN, CurrencyPair.BTCUSD);
+    public OrderBook createOrderBook(CurrencyPair currencyPair) {
+        Collection<Order> orders = orderRepository.findAllByOrderStatusAndCurrencyPair(OrderStatus.OPEN, currencyPair);
         OrderBook orderBook = new OrderBook();
         boolean isAdded = false;
         for (Order order : orders) {

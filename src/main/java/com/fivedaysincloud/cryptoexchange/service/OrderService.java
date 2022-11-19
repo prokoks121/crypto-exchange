@@ -41,7 +41,7 @@ public class OrderService {
 
     private void orderProcess(Collection<Order> orders, Order newOrder) {
         for (Order order : orders) {
-            if ((newOrder.getType() == OrderType.SELL && order.getPrice() < newOrder.getPrice()) || (newOrder.getType() == OrderType.BUY && order.getPrice() > newOrder.getPrice())) {
+            if ((newOrder.getCurrencyPair() != order.getCurrencyPair()) || (newOrder.getType() == OrderType.SELL && order.getPrice() < newOrder.getPrice()) || (newOrder.getType() == OrderType.BUY && order.getPrice() > newOrder.getPrice())) {
                 continue;
             }
 

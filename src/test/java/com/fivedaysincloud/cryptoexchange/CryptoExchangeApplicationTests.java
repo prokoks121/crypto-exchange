@@ -52,7 +52,7 @@ class CryptoExchangeApplicationTests {
     void test_order_book() {
 
         OrderBook orderBookResponse = restTemplate.exchange(
-                "http://localhost:" + port + "/orderbook",
+                "http://localhost:" + port + "/orderbook/BTCUSD",
                 HttpMethod.GET,
                 null,
                 OrderBook.class
