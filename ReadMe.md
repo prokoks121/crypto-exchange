@@ -5,7 +5,7 @@
 After you clone the project, you need to build the project:
 
 ````
-mvn clena install
+mvn clean install
 ````
 
 Then you need to create a Docker image:
@@ -17,7 +17,7 @@ docker build -t crypto .
 Then you need to run Docker image:
 
 ````
-dockr run -dp 8080:8080 crypto
+docker run -dp 8080:8080 crypto
 ````
 
 When you have successfully started the project on docker, all endpoints will be exposed on port `8080`
